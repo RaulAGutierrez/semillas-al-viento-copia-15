@@ -1,0 +1,31 @@
+import parcelas.*
+import plantas.*
+
+
+test "parcelas" {
+	// 3.- Parcelas
+	
+	const parcela1 = new Ecologica( ancho = 20, largo = 1, horasSol = 10 )
+	assert.equals(20,parcela1.superficie())
+	assert.equals(4,parcela1.cantidadMaximaPlantas())
+	
+	const soja1 = new Soja (anioSemilla = 2009, altura = 1.6)
+	const soja2 = new Soja (anioSemilla = 2009, altura = 1.6)
+	const soja3 = new Soja (anioSemilla = 2009, altura = 1.6)
+	const soja4 = new Soja (anioSemilla = 2009, altura = 1.6)
+	const soja5 = new Soja (anioSemilla = 2009, altura = 1.6)
+	assert.equals(12,soja1.horasSol())
+	
+	parcela1.plantar(soja1)
+	parcela1.plantar(soja2)
+	parcela1.plantar(soja3)
+	parcela1.plantar(soja4)
+	
+	assert.notThat(parcela1.tieneComplicaciones())
+	
+	//parcela1.plantar(soja5)
+	
+	
+	// assert.that(true)
+
+}

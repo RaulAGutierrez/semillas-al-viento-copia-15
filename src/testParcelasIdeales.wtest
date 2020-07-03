@@ -1,0 +1,55 @@
+import parcelas.*
+import plantas.*
+
+
+
+test "parcelas ideales" {
+	
+	const eco1 = new Ecologica( ancho = 5, largo = 2, horasSol = 10 )
+	assert.equals(2,eco1.cantidadMaximaPlantas())
+	const eco2 = new Ecologica( ancho = 10, largo = 2, horasSol = 10 )
+	assert.equals(4,eco2.cantidadMaximaPlantas())
+	
+	const industri1 = new Industrial( ancho = 10, largo = 15, horasSol = 14 )
+	assert.equals(50,industri1.cantidadMaximaPlantas())
+	
+	const menta1 = new Menta (anioSemilla = 2010, altura = 0.6)
+	const menta2 = new Menta (anioSemilla = 2010, altura = 1.5)
+	assert.equals(7,menta1.horasSol())
+	assert.that(menta2.daSemillas())
+	
+	const soja1 = new Soja (anioSemilla = 2009, altura = 1.6)
+	const soja2 = new Soja (anioSemilla = 2009, altura = 1.6)
+	const soja3 = new Soja (anioSemilla = 2009, altura = 1.6)
+	const soja4 = new Soja (anioSemilla = 2009, altura = 1.6)
+	const soja5 = new Soja (anioSemilla = 2009, altura = 1.6)
+	assert.equals(12,soja1.horasSol())
+	
+	const quinoa1 = new Quinoa (anioSemilla = 2010, altura = 0.6, espacioQueOcupa = 0.2)
+	assert.that(quinoa1.daSemillas())
+	const quinoa2 = new Quinoa (anioSemilla = 2006, altura = 0.6, espacioQueOcupa = 0.9)
+	assert.that(quinoa1.daSemillas())
+	
+	const sojatrans1 = new SojaTransgenica (anioSemilla = 2009, altura = 1)
+	assert.notThat(sojatrans1.daSemillas())
+	const peperina1 = new Peperina (anioSemilla = 2009, altura = 1)
+	assert.equals(6,peperina1.espacioQueOcupa())
+	
+	eco1.plantar(menta1)
+	eco1.plantar(menta2)
+	
+	eco2.plantar(menta1)
+	eco2.plantar(peperina1)
+	
+	industri1.plantar(soja1)
+	industri1.plantar(soja2)
+	industri1.plantar(soja3)
+	industri1.plantar(soja4)
+	industri1.plantar(soja5)
+	
+	assert.that(industri1.tieneComplicaciones())
+	assert.notThat(eco2.tieneComplicaciones())
+	assert.that(eco1.tieneComplicaciones())
+	
+	// assert.that(true)
+}
